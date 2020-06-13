@@ -23,6 +23,7 @@ var settings = map[string]string{
 	"tmp_path":          "./tmp",
 	"build_name":        "runner-build",
 	"build_log":         "runner-build-errors.log",
+	"build_args":        "-tags dynamic",
 	"valid_ext":         ".go, .tpl, .tmpl, .html",
 	"no_rebuild_ext":    ".tpl, .tmpl, .html",
 	"ignored":           "assets, tmp",
@@ -119,6 +120,16 @@ func tmpPath() string {
 func buildName() string {
 	return settings["build_name"]
 }
+
+func buildArgs() []string {
+	args := []string{"build"}
+	args = append(args, "-o")
+	args = append(args, buildPath())
+	args = append(args, strings.Split(settings["build_args"], " ")...)
+	args = append(args, root())
+	return args
+}
+
 func buildPath() string {
 	p := filepath.Join(tmpPath(), buildName())
 	if runtime.GOOS == "windows" && filepath.Ext(p) != ".exe" {

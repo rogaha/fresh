@@ -13,7 +13,7 @@ It currently works with [Traffic](https://github.com/pilu/traffic), [Martini](ht
 
 ## Installation
 
-    go get github.com/pilu/fresh
+    go get github.com/rogaha/fresh
 
 ## Usage
 
@@ -39,6 +39,7 @@ Here is a sample config file with the default settings:
     tmp_path:          ./tmp
     build_name:        runner-build
     build_log:         runner-build-errors.log
+    build_args:        -tags dynamic
     valid_ext:         .go, .tpl, .tmpl, .html
     no_rebuild_ext:    .tpl, .tmpl, .html
     ignored:           assets, tmp
